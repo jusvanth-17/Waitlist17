@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .leaderboard-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .leaderboard-title {
+    font-size: 2em;
+    color: #6b46c1; /* Purple */
+    margin-bottom: 20px;
+  }
+  
+  .your-position {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+  }
+  
+  .referral-code-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f3e8ff; /* Light purple */
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .referral-code-container p {
+    margin: 0;
+    font-size: 1em;
+    color: #6b46c1;
+  }
+  
+  .copy-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #6b46c1;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .copy-btn:hover {
+    background-color: #5a38a6;
+  }
+  
+  .leaderboard-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #f3e8ff; /* Light purple */
+    border-radius: 8px;
+  }
+  
+  .leaderboard-item .rank {
+    font-weight: bold;
+    color: #6b46c1;
+  }
+  
+  .leaderboard-item .name {
+    flex-grow: 1;
+    text-align: left;
+    margin-left: 10px;
+    color: #333;
+  }
+  
+  .leaderboard-item .referral-count {
+    color: #6b46c1;
+  }
