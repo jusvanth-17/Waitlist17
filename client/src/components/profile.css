@@ -1,0 +1,41 @@
+.prof {
+    text-align: center;
+    padding: 30px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .prof h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .prof h2 {
+    font-size: 1.25rem;
+    color: #555;
+  }
+  
+  .prof button.butn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .prof button.butn:hover {
+    background-color: #45a049;
+  }
+  
+  .prof br {
+    margin-bottom: 10px;
+  }
+  

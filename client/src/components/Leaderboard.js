@@ -1,39 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './Leaderboard.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./Leaderboard.css";
 
 function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
-  const [userReferralCode, setUserReferralCode] = useState('');
+  const [userReferralCode, setUserReferralCode] = useState("");
   const [userPosition, setUserPosition] = useState(null);
+  const [emailSent, setEmailSent] = useState(false);
 
   useEffect(() => {
-    // Fetch user data from localStorage and leaderboard from backend
-    const userData = JSON.parse(localStorage.getItem('user'));
+    const userData = JSON.parse(localStorage.getItem("user"));
 
     if (userData) {
-      setUserReferralCode(userData.referralCode || '');
+      setUserReferralCode(userData.referralCode || "");
     }
 
-    axios.get('http://localhost:3001/leaderboard')
-      .then(response => {
+    axios
+      .get("http://localhost:3001/leaderboard")
+      .then((response) => {
         setLeaderboard(response.data);
 
-        // Find and set the user's position
-        const currentUser = response.data.find(user => user.email === userData?.email);
+        const currentUser = response.data.find(
+          (user) => user.email === userData?.email
+        );
         if (currentUser) {
           setUserPosition(currentUser.position);
+          if (currentUser.referralCount >= 98 && !currentUser.emailSent) {
+            // Mark email as sent after successful email
+            setEmailSent(true);
+            localStorage.setItem("user", JSON.stringify(currentUser));
+            console.log("Email sent successfully and stored in localStorage.");
+          }
         }
       })
-      .catch(err => {
-        console.error('Error fetching leaderboard:', err);
+      .catch((err) => {
+        console.error("Error fetching leaderboard:", err);
       });
   }, []);
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(userReferralCode);
-    alert('Referral Code Copied!');
-  };
 
   return (
     <div className="leaderboard-container">
@@ -41,25 +44,32 @@ function Leaderboard() {
 
       {userPosition && (
         <div className="your-position">
-          <p>Your Position: <strong>{userPosition}</strong></p>
+          <p>
+            Your Position: <strong>{userPosition}</strong>
+          </p>
         </div>
       )}
 
       {userReferralCode && (
         <div className="referral-code-container">
-          <p>Your Code: <strong>{userReferralCode}</strong></p>
-          <button className="copy-btn" onClick={copyToClipboard}>
-            Copy Code
-          </button>
+          <p>
+            Your Code: <strong>{userReferralCode}</strong>
+          </p>
+        </div>
+      )}
+
+      {emailSent && (
+        <div className="email-sent-notification">
+          <p>Email sent successfully to the user!</p>
         </div>
       )}
 
       <div className="leaderboard-list">
         {leaderboard.map((emp) => (
           <div className="leaderboard-item" key={emp._id}>
-            <p className="name">{emp.name || 'Anonymous'}</p>
+            <p className="name">{emp.name || "Anonymous"}</p>
             <p className="referral-count">{emp.referralCount} referrals</p>
-            <p className="position">Position: {100 - emp.referralCount}</p>
+            <p className="position">Position: {emp.position}</p>
           </div>
         ))}
       </div>

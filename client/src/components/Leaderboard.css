@@ -82,3 +82,6 @@ body {
   .leaderboard-item .referral-count {
     color: #6b46c1;
   }
+  .position{
+    margin-left: 10px;
+  }

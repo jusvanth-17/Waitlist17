@@ -28,7 +28,7 @@ function Login() {
       // Handle successful login, like storing user info in localStorage
       localStorage.setItem("user", JSON.stringify(response.data.user));
       localStorage.setItem("position", response.data.position);
-
+      localStorage.setItem("name", JSON.stringify(response.data.user.name));
       alert("Login successful!");
       // Redirect to leaderboard after successful login
       navigate("/leaderboard");
@@ -39,22 +39,7 @@ function Login() {
 
   return (
     <div>
-      <header className="header">
-        <h1> Iphone Waitlist</h1>
-        <nav>
-          <ul className="nav-links">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/services">Services</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+
 
       <div className="form-container">
         <h2>Login</h2>
@@ -89,9 +74,7 @@ function Login() {
           <p>
             Don't have an account? <Link to="/signup">Signup here</Link>
           </p>
-          <p>
-            <Link to="/forgot-password">Forgotten password?</Link>
-          </p>
+          
         </div>
       </div>
     </div>
